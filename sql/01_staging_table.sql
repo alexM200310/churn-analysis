@@ -1,19 +1,37 @@
--- 01_staging_table.sql
--- Creates the staging table for raw customer/product churn data
 
-CREATE TABLE staging_customer_data (
-    customer_id VARCHAR(50),
-    signup_date DATE,
-    last_active_date DATE,
-    plan_type VARCHAR(50),
-    monthly_charges DECIMAL(10,2),
-    total_charges DECIMAL(10,2),
-    churn_flag BOOLEAN
-);
+select Gender,
+	count(Gender) 													as total_count,
+	round(count(Gender) / (select count(*) from customer_data), 2) 	as percentage
+from customer_data
+group by Gender;
 
-CREATE TABLE staging_product_data (
-    product_id VARCHAR(50),
-    product_name VARCHAR(100),
-    category VARCHAR(50),
-    price DECIMAL(10,2)
-);
+/****************************************************************/
+
+select Contract,
+	count(Contract) 													as total_count,
+	round(count(Contract) / (select count(*) from customer_data), 2) 	as percentage
+from customer_data
+group by Contract;
+
+/****************************************************************/
+
+select Customer_Status, 
+	count(Customer_Status) 			as total_count,
+    round(sum(Total_Revenue), 2) 	as total_revenue,
+    round(sum(Total_Revenue) / (select sum(Total_Revenue) from customer_data), 2)	as rev_percentage
+from customer_data
+group by Customer_Status;
+
+/****************************************************************/
+
+select State, 
+	count(State) 			as total_count,
+    round(count(State) * 100.0 / (select count(*) from customer_data), 2)	as percentage
+from customer_data
+group by State
+order by percentage desc;
+
+/****************************************************************/
+
+select distinct Internet_Type
+from customer_data
