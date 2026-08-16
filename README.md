@@ -1,4 +1,4 @@
-# Churn Analysis
+# Telecom Customer Churn Analysis
 
 A data analytics project focused on identifying customer churn drivers, quantifying revenue at risk, and delivering actionable insights through SQL data pipelines and a Power BI dashboard.
 
