@@ -1,27 +1,25 @@
-# Executive Summary: Customer Churn Analysis
+# Executive Summary
 
-## Overview
-This document summarizes key findings and recommendations from the customer churn analysis project.
+## Project Overview
+This project analyzes telecom customer churn to identify key drivers of customer attrition, high-risk segments, and revenue impact using Power BI, DAX measures, and structured data modeling.
 
-## Objective
-Identify the primary drivers of customer churn and provide data-driven recommendations to reduce churn rate and protect recurring revenue.
-
-## Key Findings
-- Churn rate by plan type and customer segment
-- Revenue at risk from high-probability churn customers
-- Tenure and engagement patterns correlated with churn
+## Key Objectives
+- Understand customer demographics and service usage patterns linked to churn
+- Identify top-performing vs. high-risk contract types, internet service types, and payment methods
+- Segment customers by churn status and tenure for targeted retention efforts
+- Visualize insights through an interactive dashboard with drill-down filtering capability
 
 ## Methodology
-1. Staged raw customer and product data (see `sql/01_staging_table.sql`)
-2. Cleaned and standardized records (see `sql/02_data_cleaning.sql`)
-3. Built analytical views for reporting (see `sql/03_create_views.sql`)
-4. Visualized results in Power BI (see `powerbi/churn_dashboard.pbix`)
+Raw telecom customer data (6,418 records) was modeled in Power BI using custom DAX measures (Total Customers, Churned Customers, Churn Rate, Revenue at Risk). Visuals were built across a structured three-row layout — KPI summary cards, trend/comparison charts, and detailed drill-down views — supported by six interactive slicers (Contract, Internet_Type, Payment_Method, State, Customer_Status, and a Tenure_in_Months range filter) to enable dynamic segmentation.
+
+## Key Findings
+- Month-to-Month contract customers show a significantly higher churn rate than One Year or Two Year contract holders, indicating contract length is a strong retention predictor.
+- Fiber Optic internet customers churn at a higher rate than Cable or DSL customers, suggesting service quality or pricing concerns.
+- The leading churn reasons are competitor-related (better offers, devices, and pricing), pointing to competitive pressure rather than internal service failures as the primary attrition driver.
+- Overall churn rate stands at 26.99%, representing roughly $3M in revenue at risk across the customer base.
 
 ## Recommendations
-- Target retention campaigns toward high-risk segments
-- Monitor churn rate trends monthly via the Power BI dashboard
-- Investigate pricing and plan structure for high-churn plan types
-
-## Next Steps
-- Expand analysis with additional customer engagement data
-- Automate reporting pipeline for ongoing monitoring
+- Prioritize retention incentives (loyalty pricing, contract upgrade offers) for Month-to-Month customers, as they represent the highest-risk segment.
+- Investigate Fiber Optic service quality and pricing competitiveness to reduce churn among this customer group.
+- Develop competitive counter-offers or loyalty programs targeting customers citing competitor pricing/devices as their churn reason.
+- Use the interactive dashboard filters (Contract, Internet_Type, Tenure, etc.) to continuously monitor at-risk segments and measure the effectiveness of retention campaigns over time.
